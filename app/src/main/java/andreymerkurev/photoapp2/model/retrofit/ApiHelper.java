@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiHelper {
     public Observable<Photo> requestServer() {
-        String KEY = "14006820-e3048f017fdf21bd6486e618c";
+        String KEY2 = "14006820-e3048f017fdf21bd6486e618c";
         Gson gson = new GsonBuilder()
                 .excludeFieldsWithoutExposeAnnotation()
                 .create();
@@ -25,6 +25,6 @@ public class ApiHelper {
                 .addConverterFactory(gsonConverterFactory)
                 .build()
                 .create(IApiService.class);
-        return api.getPhoto(KEY).subscribeOn(Schedulers.io());
+        return api.getPhoto(KEY2).subscribeOn(Schedulers.io());
     }
 }

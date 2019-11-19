@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import andreymerkurev.photoapp2.app.App;
 import andreymerkurev.photoapp2.model.entity.Hit;
 import andreymerkurev.photoapp2.model.entity.Photo;
 import andreymerkurev.photoapp2.model.retrofit.ApiHelper;

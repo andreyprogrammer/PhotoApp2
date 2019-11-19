@@ -1,14 +1,13 @@
 package andreymerkurev.photoapp2.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
@@ -16,10 +15,11 @@ import andreymerkurev.photoapp2.R;
 import andreymerkurev.photoapp2.app.App;
 import andreymerkurev.photoapp2.model.entity.Hit;
 import andreymerkurev.photoapp2.presenter.MainPresenter;
+import moxy.MvpAppCompatActivity;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, SharedPrefs, MainView {
+public class MainActivity extends MvpAppCompatActivity implements View.OnClickListener, SharedPrefs, MainView {
     private static final String TAG = "app_log - MainActivity";
     private static final String KEY = "KEY";
     private final int SPANCOUNT = 2;
