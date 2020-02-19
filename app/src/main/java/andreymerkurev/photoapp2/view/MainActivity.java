@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,6 +26,7 @@ public class MainActivity extends MvpAppCompatActivity implements SharedPrefs, M
     private final int SPANCOUNT = 2;
     private RecyclerViewAdapter adapter;
     private SharedPreferences sharedPreferences;
+    private ProgressBar progressBar;
 
     @InjectPresenter
     MainPresenter presenter;
@@ -40,6 +42,7 @@ public class MainActivity extends MvpAppCompatActivity implements SharedPrefs, M
         setContentView(R.layout.activity_main);
         App.getAppComponent().inject(presenter);
         initRecyclerView();
+        progressBar = findViewById(R.id.progress_bar);
     }
 
     @Override
@@ -68,6 +71,11 @@ public class MainActivity extends MvpAppCompatActivity implements SharedPrefs, M
         Intent intent = new Intent(v.getContext(), DetailActivity.class);
         intent.putExtra("POSITION", hitList.get(position).webformatURL);
         startActivity(intent);
+    }
+
+    @Override
+    public void progressBarSetVisibility(int visibility) {
+        progressBar.setVisibility(visibility);
     }
 
     @Override

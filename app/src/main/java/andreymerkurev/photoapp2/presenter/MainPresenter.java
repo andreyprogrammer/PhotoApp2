@@ -53,6 +53,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     public void getAllPhotoFromInternet() {
+        getViewState().progressBarSetVisibility(View.VISIBLE);
         Observable<Photo> single = apiHelper.requestServer();
         Disposable disposable = single.observeOn(AndroidSchedulers.mainThread()).subscribe(photos -> {
             Log.d(TAG, "onNext: " + photos.totalHits);
@@ -60,6 +61,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
                 putData(hit.webformatURL);
             }
             hitList = photos.hits;
+            getViewState().progressBarSetVisibility(View.INVISIBLE);
             getViewState().updateRecyclerView();
         }, throwable -> {
             Log.e(TAG, "onError " + throwable);
@@ -67,13 +69,14 @@ public class MainPresenter extends MvpPresenter<MainView> {
     }
 
     public void getAllPhotoFromDB() {
-
+        getViewState().progressBarSetVisibility(View.VISIBLE);
         hitList  = new ArrayList<>();
         Disposable disposable = appDatabase.pictDao().getAll().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(picts -> {
                     for (int i = 0; i < picts.size(); i++) {
                         hitList.add(new Hit(picts.get(i).webformatURL));
                     }
+                    getViewState().progressBarSetVisibility(View.INVISIBLE);
                     getViewState().updateRecyclerView();
                 }, throwable -> {
                 });
