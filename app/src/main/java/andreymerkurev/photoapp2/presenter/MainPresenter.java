@@ -56,13 +56,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
         Observable<Photo> single = apiHelper.requestServer();
         Disposable disposable = single.observeOn(AndroidSchedulers.mainThread()).subscribe(photos -> {
             Log.d(TAG, "onNext: " + photos.totalHits);
-
             for (Hit hit : photos.hits) {
                 putData(hit.webformatURL);
             }
             hitList = photos.hits;
             getViewState().updateRecyclerView();
-            getViewState().setImage(hitList);
         }, throwable -> {
             Log.e(TAG, "onError " + throwable);
         });
@@ -76,7 +74,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
                     for (int i = 0; i < picts.size(); i++) {
                         hitList.add(new Hit(picts.get(i).webformatURL));
                     }
-
                     getViewState().updateRecyclerView();
                 }, throwable -> {
                 });
@@ -89,7 +86,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
         Disposable disposable = appDatabase.pictDao().insert(pict).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(id -> {
                     Log.d(TAG, "putData: " + id);
-
                 }, throwable -> {
                     Log.d(TAG, "putData: " + throwable);
                 });
@@ -114,7 +110,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
         public void onClick(View v, int position) {
             getViewState().onClick(v, position, hitList);
         }
-
     }
 
     public RecyclerMainPresenter getRecyclerMainPresenter() {

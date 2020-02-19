@@ -13,6 +13,5 @@ public class PicassoLoader {
                 .load(url)
                 .error(R.drawable.smile)
                 .into(imageView);
-
     }
 }

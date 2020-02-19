@@ -14,8 +14,5 @@ public interface MainView extends MvpView {
     void updateRecyclerView();
 
     @StateStrategyType(value = SkipStrategy.class)
-    void setImage(List<Hit> hitList);
-
-    @StateStrategyType(value = SkipStrategy.class)
     void onClick(View v, int position, List<Hit> hitList);
 }

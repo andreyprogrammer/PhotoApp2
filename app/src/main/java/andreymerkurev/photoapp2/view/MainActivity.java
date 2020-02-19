@@ -19,7 +19,7 @@ import moxy.MvpAppCompatActivity;
 import moxy.presenter.InjectPresenter;
 import moxy.presenter.ProvidePresenter;
 
-public class MainActivity extends MvpAppCompatActivity implements View.OnClickListener, SharedPrefs, MainView {
+public class MainActivity extends MvpAppCompatActivity implements SharedPrefs, MainView {
     private static final String TAG = "app_log - MainActivity";
     private static final String KEY = "KEY";
     private final int SPANCOUNT = 2;
@@ -59,13 +59,8 @@ public class MainActivity extends MvpAppCompatActivity implements View.OnClickLi
         RecyclerView recyclerView = findViewById(R.id.recycler_view);
         GridLayoutManager layoutManager = new GridLayoutManager(this, SPANCOUNT);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new RecyclerViewAdapter(presenter.getRecyclerMainPresenter(), this);
+        adapter = new RecyclerViewAdapter(presenter.getRecyclerMainPresenter());
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onClick(View view) {
-        return;
     }
 
     @Override
@@ -77,12 +72,7 @@ public class MainActivity extends MvpAppCompatActivity implements View.OnClickLi
 
     @Override
     public void updateRecyclerView() {
-        Log.d(TAG, "updateRecyclerView: ");
         adapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void setImage(List<Hit> hitList) {
-        Log.d(TAG, "setImage: " + hitList);
-    }
 }
