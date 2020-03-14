@@ -3,8 +3,6 @@ package andreymerkurev.photoapp2.view;
 import android.os.Bundle;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
 import javax.inject.Inject;
 
 import andreymerkurev.photoapp2.R;
@@ -31,9 +29,10 @@ public class DetailActivity extends MvpAppCompatActivity implements DetailView {
         imageView = findViewById(R.id.img);
 
         String url = getIntent().getStringExtra("POSITION");
-        detailPresenter.getImage(this, url);
+        detailPresenter.getImage(url);
     }
 
+    @Override
     public void setImage(String url) {
         picassoLoader.loadImage(url, imageView);
     }

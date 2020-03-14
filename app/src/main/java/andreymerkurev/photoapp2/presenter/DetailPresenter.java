@@ -1,13 +1,12 @@
 package andreymerkurev.photoapp2.presenter;
 
-import android.app.Activity;
-
-import andreymerkurev.photoapp2.view.DetailActivity;
 import andreymerkurev.photoapp2.view.DetailView;
+import moxy.InjectViewState;
 import moxy.MvpPresenter;
 
+@InjectViewState
 public class DetailPresenter extends MvpPresenter<DetailView> {
-    public void getImage(Activity activity, String url) {
-        ((DetailActivity)activity).setImage(url);
+    public void getImage(String url) {
+        getViewState().setImage(url);
     }
 }
